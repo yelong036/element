@@ -1,4 +1,4 @@
-import { getPropByPath } from 'element-ui/src/utils/util';
+import { getPropByPath } from 'element-ui-liusq/src/utils/util';
 
 export const cellStarts = {
   default: {

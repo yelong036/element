@@ -375,7 +375,7 @@
       </div>
       <div class="mask"></div>
     </div>
-    <div 
+    <div
       class="theme-intro-b"
       @click="hideIntroB"
       v-if="showIntroB"
@@ -399,8 +399,8 @@
 </template>
 <script>
   import throttle from 'throttle-debounce/throttle';
-  import { addClass, removeClass } from 'element-ui/src/utils/dom';
-  
+  import { addClass, removeClass } from 'element-ui-liusq/src/utils/dom';
+
   export default {
     created() {
       this.throttledHandleScroll = throttle(10, true, index => {

@@ -22,8 +22,8 @@ In main.js:
 
 ```javascript
 import Vue from 'vue';
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui-liusq';
+import 'element-ui-liusq/lib/theme-chalk/index.css';
 import App from './App.vue';
 
 Vue.use(ElementUI);

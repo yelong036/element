@@ -87,13 +87,13 @@
 
 ## Install
 ```shell
-npm install element-ui -S
+npm install element-ui-liusq -S
 ```
 
 ## Quick Start
 ``` javascript
 import Vue from 'vue'
-import Element from 'element-ui'
+import Element from 'element-ui-liusq'
 
 Vue.use(Element)
 
@@ -102,7 +102,7 @@ import {
   Select,
   Button
   // ...
-} from 'element-ui'
+} from 'element-ui-liusq'
 
 Vue.component(Select.name, Select)
 Vue.component(Button.name, Button)
