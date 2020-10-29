@@ -13,6 +13,7 @@ export default {
 
   props: {
     native: Boolean,
+    wrapSize: Boolean,
     wrapStyle: {},
     wrapClass: {},
     viewClass: {},
@@ -121,6 +122,7 @@ export default {
     if (this.native) return;
     this.$nextTick(this.update);
     !this.noresize && addResizeListener(this.$refs.resize, this.update);
+    !this.noresize && this.wrapSize && addResizeListener(this.wrap, this.update);
   },
 
   beforeDestroy() {
