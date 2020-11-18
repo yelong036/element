@@ -154,6 +154,9 @@
           });
         };
       },
+      setCancelButtonText(confirmButtonText) {
+        this.confirmButtonText = confirmButtonText;
+      },
       doClose() {
         if (!this.visible) return;
         this.visible = false;
