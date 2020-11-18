@@ -66,6 +66,7 @@
             v-show="showConfirmButton"
             :round="roundButton"
             size="small"
+            :disabled="confirmButtonDisabled"
             @click.native="handleAction('confirm')"
             @keydown.enter="handleAction('confirm')">
             {{ confirmButtonText || t('el.messagebox.confirm') }}
@@ -153,9 +154,6 @@
             if (currentId === this.uid) this.doClose();
           });
         };
-      },
-      setCancelButtonText(confirmButtonText) {
-        this.confirmButtonText = confirmButtonText;
       },
       doClose() {
         if (!this.visible) return;
