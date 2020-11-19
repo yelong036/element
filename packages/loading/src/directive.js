@@ -93,6 +93,7 @@ loadingDirective.install = Vue => {
       const spinnerExr = el.getAttribute('element-loading-spinner');
       const backgroundExr = el.getAttribute('element-loading-background');
       const customClassExr = el.getAttribute('element-loading-custom-class');
+      const customCloseExr = el.getAttribute('element-loading-custom-close');
       const vm = vnode.context;
       const mask = new Mask({
         el: document.createElement('div'),
@@ -101,6 +102,7 @@ loadingDirective.install = Vue => {
           spinner: vm && vm[spinnerExr] || spinnerExr,
           background: vm && vm[backgroundExr] || backgroundExr,
           customClass: vm && vm[customClassExr] || customClassExr,
+          customClose: vm && vm[customCloseExr] || customCloseExr,
           fullscreen: !!binding.modifiers.fullscreen
         }
       });

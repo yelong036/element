@@ -12,6 +12,7 @@
         <i v-else :class="spinner"></i>
         <p v-if="text" class="el-loading-text">{{ text }}</p>
       </div>
+      <i class="el-icon-close el-loading-close" @click="hideLoading" v-show="customClose"></i>
     </div>
   </transition>
 </template>
@@ -25,7 +26,8 @@
         background: null,
         fullscreen: true,
         visible: false,
-        customClass: ''
+        customClass: '',
+        customClose: false
       };
     },
 
@@ -35,6 +37,9 @@
       },
       setText(text) {
         this.text = text;
+      },
+      hideLoading() {
+        this.visible = false;
       }
     }
   };

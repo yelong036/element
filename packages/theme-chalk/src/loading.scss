@@ -69,6 +69,12 @@
   }
 }
 
+@include b(loading-close) {
+    float: right;
+    margin: 10px 10px 0 0;
+    cursor: pointer;
+}
+
 .el-loading-fade-enter,
 .el-loading-fade-leave-active {
   opacity: 0;

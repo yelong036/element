@@ -12,7 +12,8 @@ const defaults = {
   fullscreen: true,
   body: false,
   lock: false,
-  customClass: ''
+  customClass: '',
+  customClose: false
 };
 
 let fullscreenLoading;
