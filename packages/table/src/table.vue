@@ -209,6 +209,14 @@
         height: layout.headerHeight + 'px'
       }"></div>
     <div class="el-table__column-resize-proxy" ref="resizeProxy" v-show="resizeProxyVisible"></div>
+    <div
+      v-if="setField"
+      class="el-table__set-field"
+      :style="{
+        height: layout.headerHeight + 'px'
+      }">
+        <slot name="setField"></slot>
+    </div>
   </div>
 </template>
 
@@ -259,6 +267,8 @@
       },
 
       stripe: Boolean,
+
+      setField: Boolean,
 
       border: Boolean,
 

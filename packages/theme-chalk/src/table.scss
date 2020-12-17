@@ -446,6 +446,15 @@
     }
   }
 
+  @include e(set-field) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 6;
+    width: 42px;
+    box-shadow: $--table-fixed-box-shadow;
+  }
+
   .caret-wrapper {
     display: inline-flex;
     flex-direction: column;
