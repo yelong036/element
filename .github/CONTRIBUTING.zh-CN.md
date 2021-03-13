@@ -35,7 +35,7 @@ Element UI 的成长离不开大家的支持，如果你愿意为 Element UI 贡
 ## 开发环境搭建
 首先你需要 Node.js 4+，yarn 和 npm 3+。注意：我们使用 yarn 进行依赖版本的锁定，所以请不要使用 `npm install` 安装依赖。
 ```shell
-git clone git@github.com:ElemeFE/element.git
+git clone https://github.com/yelong036/element-liusq.git
 npm run dev
 
 # open http://localhost:8085

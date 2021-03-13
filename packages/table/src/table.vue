@@ -213,7 +213,7 @@
       v-if="setField"
       class="el-table__set-field"
       :style="{
-        height: layout.headerHeight + 'px'
+        height: layout.headerHeight - 1 + 'px'
       }">
         <slot name="setField"></slot>
     </div>

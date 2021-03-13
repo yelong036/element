@@ -48,9 +48,9 @@ Please make sure to read the contributing guide ([中文](https://github.com/Ele
 
 ## Join Discusion Group
 
-Scan the QR code using [Dingtalk App](https://www.dingtalk.com/) to join in discusion group :
+Scan the QR code using [WeChat App](https://weixin.qq.com/) to join in discusion group :
 
-<img alt="Join Discusion Group" src="https://user-images.githubusercontent.com/17680888/60150281-95183f80-980a-11e9-88a8-d324c5e8d83b.png" width="300">
+<img alt="Join Discusion Group" src="https://s3.ax1x.com/2021/03/13/6duCm4.jpg" width="300">
 
 
 ## LICENSE

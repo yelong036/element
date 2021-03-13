@@ -448,10 +448,9 @@
 
   @include e(set-field) {
     position: absolute;
-    right: 0;
+    right: 1px;
     top: 0;
-    z-index: 6;
-    width: 42px;
+    width: 41px;
     box-shadow: $--table-fixed-box-shadow;
   }
 

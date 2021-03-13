@@ -305,6 +305,15 @@ export default {
     const columnIndex = this.getColumnElIndex(children, this.$el);
 
     owner.store.commit('insertColumn', this.columnConfig, columnIndex, this.isSubColumn ? parent.columnConfig : null);
+    if (parent.defaultSort && parent.$ready) {
+      // 修复v-for的动态列插入问题 created by liusq<443551600@qq.com>
+      const sortOptions = {
+        prop: parent.defaultSort.prop,
+        order: parent.defaultSort.order,
+        init: true
+      };
+      owner.store.commit('sort', sortOptions);
+    }
   },
 
   destroyed() {
