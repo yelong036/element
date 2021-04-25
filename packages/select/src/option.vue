@@ -64,10 +64,21 @@
       },
 
       itemSelected() {
+        const select = this.select;
         if (!this.select.multiple) {
-          return this.isEqual(this.value, this.select.value);
+          const isObject = Object.prototype.toString.call(this.select.value).toLowerCase() === '[object object]';
+          return this.isEqual(this.value, isObject && select.lazyOption && getValueByPath(select.value, select.valueKey) || select.value);
         } else {
-          return this.contains(this.select.value, this.value);
+          // XXX 处理object to option   liusq<443551600@qq.com>
+          const select2string = [];
+          if (select.lazyOption) {
+            for (let i = select.value.length - 1; i >= 0; i--) {
+              const item = select.value[i];
+              const isObject = Object.prototype.toString.call(item).toLowerCase() === '[object object]';
+              select2string.push(isObject && getValueByPath(item, select.valueKey) || item);
+            }
+          }
+          return this.contains(select.lazyOption && select2string || select.value, this.value);
         }
       },
 

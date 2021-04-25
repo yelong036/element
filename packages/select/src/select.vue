@@ -122,12 +122,12 @@
           </el-option>
           <slot></slot>
         </el-scrollbar>
-        <template v-if="emptyText && (!allowCreate || loading || (allowCreate && options.length === 0 ))">
-          <slot name="empty" v-if="$slots.empty"></slot>
-          <p class="el-select-dropdown__empty" v-else>
-            {{ emptyText }}
-          </p>
-        </template>
+	      <template v-if="emptyText && (!allowCreate || loading || (allowCreate && options.length === 0 )) || dynamicLoadOptioned">
+		      <slot name="empty" v-if="$slots.empty"></slot>
+		      <p class="el-select-dropdown__empty" v-else>
+			      {{ dynamicLoadOptioned && t('el.select.loading') || emptyText }}
+		      </p>
+	      </template>
       </el-select-menu>
     </transition>
   </div>
@@ -143,6 +143,7 @@
   import ElTag from 'element-ui-liusq/packages/tag';
   import ElScrollbar from 'element-ui-liusq/packages/scrollbar';
   import debounce from 'throttle-debounce/debounce';
+  import throttle from 'throttle-debounce/throttle';
   import Clickoutside from 'element-ui-liusq/src/utils/clickoutside';
   import { addResizeListener, removeResizeListener } from 'element-ui-liusq/src/utils/resize-event';
   import { t } from 'element-ui-liusq/src/locale';
@@ -281,6 +282,7 @@
       noDataText: String,
       remoteMethod: Function,
       filterMethod: Function,
+      lazyOption: Function,
       multiple: Boolean,
       multipleLimit: {
         type: Number,
@@ -308,6 +310,8 @@
     data() {
       return {
         options: [],
+        dynamicLoadOptioned: false,
+        optionsScroll: null,
         cachedOptions: [],
         createdLabel: null,
         createdSelected: false,
@@ -516,9 +520,14 @@
 
         for (let i = this.cachedOptions.length - 1; i >= 0; i--) {
           const cachedOption = this.cachedOptions[i];
-          const isEqual = isObject
-            ? getValueByPath(cachedOption.value, this.valueKey) === getValueByPath(value, this.valueKey)
-            : cachedOption.value === value;
+          let isEqual;
+          if (isObject && this.lazyOption) {
+            isEqual = cachedOption.value === getValueByPath(value, this.valueKey);
+          } else if (isObject) {
+            isEqual = getValueByPath(cachedOption.value, this.valueKey) === getValueByPath(value, this.valueKey);
+          } else {
+            isEqual = cachedOption.value === value;
+          }
           if (isEqual) {
             option = cachedOption;
             break;
@@ -531,6 +540,10 @@
           value: value,
           currentLabel: label
         };
+        if (isObject && this.lazyOption) {
+          newOption = value;
+          newOption.currentLabel = value.label;
+        }
         if (this.multiple) {
           newOption.hitState = false;
         }
@@ -834,6 +847,15 @@
         } else {
           return getValueByPath(item.value, this.valueKey);
         }
+      },
+
+      optionsScrollHandler() {
+        const condition = this.optionsScroll.scrollHeight - this.optionsScroll.scrollTop <= this.optionsScroll.clientHeight;
+        if (!condition) return;
+        this.dynamicLoadOptioned = true;
+        this.lazyOption().finally(() => {
+          this.dynamicLoadOptioned = false;
+        });
       }
     },
 
@@ -864,6 +886,12 @@
       }
       addResizeListener(this.$el, this.handleResize);
 
+      if (this.lazyOption) {
+        this.throttledOptionsScrollHandler = throttle(300, this.optionsScrollHandler);
+        this.optionsScroll = this.$el.querySelector('.el-select-dropdown .el-select-dropdown__wrap');
+        this.optionsScroll.addEventListener('scroll', this.throttledOptionsScrollHandler);
+      }
+
       const reference = this.$refs.reference;
       if (reference && reference.$el) {
         const sizeMap = {
@@ -887,6 +915,7 @@
 
     beforeDestroy() {
       if (this.$el && this.handleResize) removeResizeListener(this.$el, this.handleResize);
+      if (this.optionsScroll) this.optionsScroll.removeEventListener('scroll', this.throttledOptionsScrollHandler);
     }
   };
 </script>
