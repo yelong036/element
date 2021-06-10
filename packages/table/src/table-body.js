@@ -269,7 +269,7 @@ export default {
       const tooltip = this.$refs.tooltip;
       if (tooltip) {
         tooltip.setExpectedState(false);
-        tooltip.handleClosePopper();
+        this.table.tooltipEnterable ? tooltip.debounceClose() : tooltip.handleClosePopper();
       }
       const cell = getCell(event);
       if (!cell) return;

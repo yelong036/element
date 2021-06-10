@@ -317,6 +317,11 @@
 
       tooltipEffect: String,
 
+      tooltipEnterable: {
+        type: Boolean,
+        default: true
+      },
+
       spanMethod: Function,
 
       selectOnIndeterminate: {
