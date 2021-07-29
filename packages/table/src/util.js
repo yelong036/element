@@ -1,4 +1,4 @@
-import { getValueByPath } from 'element-ui-liusq/src/utils/util';
+import { getValueByPath, looseEqual, arrayFindIndex } from 'element-ui-liusq/src/utils/util';
 
 export const getCell = function(event) {
   let cell = event.target;
@@ -197,7 +197,8 @@ export function compose(...funcs) {
 
 export function toggleRowStatus(statusArr, row, newVal) {
   let changed = false;
-  const index = statusArr.indexOf(row);
+  // const index = statusArr.indexOf(row);
+  const index = arrayFindIndex(statusArr, item => looseEqual(item, row));
   const included = index !== -1;
 
   const addRow = () => {
