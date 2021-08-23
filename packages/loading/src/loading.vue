@@ -26,7 +26,8 @@
         background: null,
         fullscreen: true,
         visible: false,
-        customClass: '',
+        hiding: false,
+        customClass: false,
         customClose: false
       };
     },
@@ -40,6 +41,7 @@
       },
       hideLoading() {
         this.visible = false;
+        this.hiding = true;
       }
     }
   };

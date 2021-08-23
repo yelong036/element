@@ -118,3 +118,13 @@
   opacity: 0;
   transform: translate(-50%, -100%);
 }
+
+.el-message-fade-line-enter {
+  opacity: 0;
+  transform: translate(-50%, 100%);
+}
+
+.el-message-fade-line-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}

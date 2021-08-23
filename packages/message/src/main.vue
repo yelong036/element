@@ -1,5 +1,5 @@
 <template>
-  <transition name="el-message-fade" @after-leave="handleAfterLeave">
+  <transition name="el-message-fade-line" @after-leave="handleAfterLeave">
     <div
       :class="[
         'el-message',
