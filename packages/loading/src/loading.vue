@@ -10,7 +10,7 @@
           <circle class="path" cx="50" cy="50" r="20" fill="none"/>
         </svg>
         <i v-else :class="spinner"></i>
-        <p v-if="text" class="el-loading-text">{{ text }}</p>
+				<p v-if="text" class="el-loading-text">{{ text }}<span v-show="isNumber">{{percent}}%</span></p>
       </div>
       <i class="el-icon-close el-loading-close" @click="hideLoading" v-show="customClose"></i>
     </div>
@@ -28,7 +28,8 @@
         visible: false,
         hiding: false,
         customClass: false,
-        customClose: false
+        customClose: false,
+        percent: ''
       };
     },
 
@@ -42,6 +43,9 @@
       hideLoading() {
         this.visible = false;
         this.hiding = true;
+      },
+      isNumber() {
+        return (typeof this.percent) === 'number';
       }
     }
   };
