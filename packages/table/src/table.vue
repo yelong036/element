@@ -319,7 +319,7 @@
 
       tooltipEnterable: {
         type: Boolean,
-        default: true
+        default: false
       },
 
       spanMethod: Function,
